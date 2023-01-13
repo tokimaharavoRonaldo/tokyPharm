@@ -1,0 +1,146 @@
+   {% extends 'base.html.twig' %}
+
+{% block title %}dashboard{% endblock %}
+
+{% block body %}
+<style>
+ {# body {
+     background-color:red;
+ } #}
+    {# .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; } #}
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+ 
+</style>
+   {# <H1>dashboard</H1> #}
+   {# <br> #}
+   <div class="container-fluid">
+   <div class="d-flex">
+   <div class="col-sm-6">
+    <h1>Dashboard</h1>
+    </div>
+<div class="col-md-6">
+{# <input class="form-control float-end" id="search_med" type="search" value="{{term}}" placeholder="Search" aria-label="Search" style="width:150px;"> #}
+ <span class="float-end">
+ filter by date:
+<br> 
+
+<input type="text" id='daterangepicker' name="daterange" value="{{date_start }} - {{date_end}}" />
+</span>
+</div>
+</div>
+</div>
+<br>
+   
+   {# value="{{medicament.datePeremp|date('Y-m-d') }}" #}
+   <div class="container-fluid">
+   <div class="row ">
+            	<div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+            	   <div class="info-box info-box-new-style">
+            	        <span class="info-box-icon bg-aqua"><i class="ion ion-cash"></i></span>
+
+            	        <div class="info-box-content-blue">
+            	          <span class="info-box-text">total purchasse</span>
+            	          <span class="info-box-number total_purchase"><i class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+						<p class="total-purchasse">{{purchasse[0]['purchasse_total'] ?? 0}} Ar</p>
+						</div>
+            	        <!-- /.info-box-content -->
+            	   </div>
+        	       <!-- /.info-box -->
+        	    </div>
+        	    <!-- /.col -->
+        	    <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+        	       <div class="info-box info-box-new-style">
+            	        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-cart-outline"></i></span>
+
+            	        <div class="info-box-content-blue">
+            	          <span class="info-box-text">total sell</span>
+            	          <span class="info-box-number total_sell"><i class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+            	        <p class="total-sell">{{sell[0]['sell_total'] ?? 0}} Ar</p>
+						</div>
+            	        <!-- /.info-box-content -->
+        	       </div>
+        	      <!-- /.info-box -->
+        	    </div>
+        	    <!-- /.col -->
+        	    <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+        	       <div class="info-box info-box-new-style">
+            	        <span class="info-box-icon bg-yellow">
+            				{# <i class="fa fa-exclamation"></i> #}
+            	        </span>
+
+            	        <div class="info-box-content-yellow">
+            	          <span class="info-box-text"> purchase paid</span>
+            	          <span class="info-box-number purchase_due"><i class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+            	        <p class="purchasse-paid">{{purchasse[0]['total_paid'] ?? 0}} Ar</p>
+						</div>
+        	       </div>
+        	    </div>
+        	
+        	    <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+        	        <div class="info-box info-box-new-style">
+        	           <span class="info-box-icon bg-yellow">
+            	        	<i class="ion ion-ios-paper-outline"></i>
+            	        	{# <i class="fa fa-exclamation"></i> #}
+        	           </span>
+
+            	        <div class="info-box-content-yellow">
+            	          <span class="info-box-text">sell paid</span>
+            	          <span class="info-box-number invoice_due"><i class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+            	        <p class="sell-paid">{{sell[0]['total_paid'] ?? 0}} Ar</p>
+						</div>
+        	        </div>
+        	      
+        	    </div>
+
+				 <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+        	       <div class="info-box info-box-new-style">
+            	        <span class="info-box-icon bg-yellow">
+            				
+            	        </span>
+
+            	        <div class="info-box-content-red">
+						<i class="fa fa-exclamation"></i>
+            	          <span class="info-box-text">purchase due</span>
+            	          <span class="info-box-number purchase_due"><i class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+            	          {% if purchasse[0]['total_due'] < 0 %}
+						<p class="purchasse-due">0 Ar</p>
+						{% else %}
+						<p class="purchasse-due">{{purchasse[0]['total_due'] ?? 0}} Ar</p>
+						{% endif %}
+						
+						{# <p class="purchasse-due">{{purchasse[0]['total_due']}} Ar</p> #}
+						</div>
+        	       </div>
+        	    </div>
+        	
+        	    <div class="col-md-3 col-sm-6 col-xs-12 col-custom">
+        	        <div class="info-box info-box-new-style">
+        	           <span class="info-box-icon bg-yellow">
+            	        	<i class="ion ion-ios-paper-outline"></i>
+            	        	
+        	           </span>
+
+            	        <div class="info-box-content-red">
+						<i class="fa fa-exclamation"></i>
+            	          <span class="info-box-text">sell due</span>
+            	          <span class="info-box-number invoice_due"><i class="fas fa-sync fa-spin fa-fw margin-bottom"></i></span>
+            	          {% if sell[0]['total_due'] < 0 %}
+						<p class="sell-due">0 Ar</p>
+						{% else %}
+						<p class="sell-due">{{sell[0]['total_due'] ?? 0}} Ar</p>
+						{% endif %}
+						
+						{# <p class="sell-due">{{sell[0]['total_due']}} Ar</p> #}
+						</div>
+        	        </div>
+        	      
+        	    </div>
+        	    </div>
+        	    </div>
+        	    <br>
+
+			
+{# {{ render_chart(chart, {'class': 'my-chart'}) }} #}
+
+    	    <!-- /.col -->
+            {% endblock %}

@@ -1,0 +1,297 @@
+// body {
+//     background-color:red;
+// }
+
+// .sidebar {
+//     margin: 0;
+//     padding: 0;
+//     width: 200px;
+//     background-color: #f1f1f1;
+//     position: fixed;
+//     height: 100%;
+//     overflow: auto;
+//   }
+  
+//   .sidebar a {
+//     display: block;
+//     color: black;
+//     padding: 16px;
+//     text-decoration: none;
+//   }
+@import "../../node_modules/bootstrap/scss/bootstrap" ; 
+@import "~bootstrap/scss/bootstrap" ;  
+@import "../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css" ; 
+
+// @import '../../node_modules/autocomplete/index.js';
+// @import '../../node_modules/jquery-ui/themes/base/theme.css';
+// @import '../../node_modules/jquery-ui/themes/base/datepicker.css';
+// @import '../../node_modules/jquery-ui/themes/base/slider.css';
+// @import '/public/resources/css/monprojet.css';
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: absolute;
+  height: 100%;
+  overflow: auto;
+}
+
+.navbarSupportedContent{
+  margin-left: 200px;
+}
+.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: auto;
+}
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+.modal-content {
+  background-color:burlywood;
+  width: 95%;
+  margin: 0 auto;
+}
+  
+.modal-dialog {
+  width: 75%;
+  margin: 0 auto;
+}
+
+// table, th, td {
+//     border: 1px solid black;
+//     border-collapse: collapse;
+// }
+
+  
+
+// .ui-autocomplete {
+//   max-height: 300px;
+//   overflow-y: auto;
+//   /* prevent horizontal scrollbar */
+//   overflow-x: hidden;
+// } 
+
+.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  display: none;
+  min-width: 160px;   
+  padding: 4px 0;
+  margin: 0 0 10px 25px;
+  list-style: none;
+  background-color: #ffffff;
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+}
+
+.ui-menu-item > a.ui-corner-all {
+  display: block;
+  padding: 3px 15px;
+  clear: both;
+  font-weight: normal;
+  line-height: 18px;
+  color: #555555;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.ui-state-hover, .ui-state-active {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #0088cc;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  background-image: none;
+}
+
+
+
+// datepicker
+.ui-datepicker {
+  width: 200px;
+  height: 180px;
+  margin: 3px auto 0;
+  background-color: #dfd9d9; 
+  font: 12pt Arial, sans-serif;
+  // /*-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+  // -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);*/
+}
+
+  .ui-datepicker table {
+      width: 100%;
+  }
+
+.ui-datepicker-header {
+  background: #3399ff;
+  color: #ffffff;
+  font-family:'Times New Roman';
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: #111;
+}
+
+.ui-datepicker-title {
+  text-align: center;
+  font-size: 15px;
+
+}
+
+.ui-datepicker-prev {
+  float: left;
+  color: brown;
+  cursor: pointer;
+  background-position: center -30px;
+}
+
+.ui-datepicker-next {
+  float: right;
+  color: brown;
+  cursor: pointer;
+  background-position: center 0px;
+}
+
+// .ui-datepicker thead {
+//   background-color: #f7f7f7;
+
+//   /*border-bottom: 1px solid #bbb;*/
+// }
+
+// .ui-datepicker th {
+//   background-color:#808080;
+//   text-transform: uppercase;
+//   font-size: 8pt;
+//   color: #666666;
+//   /*text-shadow: 1px 0px 0px #fff;*/
+//   /*filter: dropshadow(color=#fff, offx=1, offy=0);*/
+// }
+
+// .ui-datepicker tbody td {
+//   padding: 0;
+//   /*border-right: 1px solid #808080;*/
+// }
+
+//   .ui-datepicker tbody td:last-child {
+//       border-right: 0px;
+//   }
+
+// .ui-datepicker tbody tr {
+//   border-bottom: 1px solid #bbb;
+// }
+
+//   .ui-datepicker tbody tr:last-child {
+//       border-bottom: 0px;
+//   }
+
+// .ui-datepicker a {
+//   text-decoration: none;
+// }
+
+// .ui-datepicker td span, .ui-datepicker td a {
+//   display: inline-block;
+//   /*font-weight: bold;*/
+//   text-align: center;
+//   width: 30px;
+//   height: 30px;
+//   line-height: 30px;
+//   color: #ffffff;
+//   /*text-shadow: 1px 1px 0px #fff;*/
+//   /*filter: dropshadow(color=#fff, offx=1, offy=1);*/
+// }
+
+// .ui-datepicker-calendar .ui-state-default {
+//     background: linear-gradient(#999999, #737373);
+//     color:#ffffff;
+//     height:40px;
+//     width:40px;
+
+// }
+
+// .ui-datepicker-calendar .ui-state-hover {
+//   background: #33adff;
+//   color: #FFFFFF;
+// }
+
+// .ui-datepicker-calendar .ui-state-active {
+//   background: #33adff;
+//   -webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+//   -moz-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+//   box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+//   color: #e0e0e0;
+//   text-shadow: 0px 1px 0px #4d7a85;
+//   border: 1px solid #55838f;
+//   position: relative;
+//   margin: -1px;
+// }
+
+// .ui-datepicker-unselectable .ui-state-default {
+//   background: #D6E4BE;
+//   color: #000;
+// }
+
+//font-awesome
+.fa-fw{
+    // font-size: 3em !important; /*size whatever you like*/
+// width: 50px;
+// height: 100px;
+margin-right: 1px;
+  }
+
+  .error{
+color:red;
+  }
+  
+  .info-box-content-blue{
+    border-radius: 5px;
+    padding-left:10px;
+    padding-top:2px;
+    padding-bottom:1px;
+    background-color: rgb(56, 88, 175);
+  }
+  .info-box-content-yellow{
+    border-radius: 5px;
+    padding-left:10px;
+    padding-top:2px;
+    padding-bottom:1px;
+    background-color: rgb(220, 223, 24);
+  }
+  .info-box-content-red{
+    border-radius: 5px;
+    padding-left:10px;
+    padding-top:2px;
+    padding-bottom:1px;
+    background-color: #d61919;
+  }
+
+  
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  // width: 100%;
+  // background-color: red;
+  // color: white;
+  text-align: center;
+}

@@ -1,0 +1,257 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}edit sell{% endblock %}
+
+{% block body %}
+<div class="col-md-12">
+
+<H1>
+Edit sell
+</H1>
+ <form  class="form-control"  id="transaction_edit" method="POST" action="{{path('app_sell_udpate', {'id': sell.id} )}}"> 
+
+<div class="row">
+ <div class="form-group col-md-3">
+  <label  class="label"> Client</label><br>
+ <select name="contact" required class="form-control">
+  {# <option >please select</option> #}
+{%for contact in contacts %}
+  <option value="{{contact.id}}" {% if (contact.id == sell.idContact.id  ) %}selected='selected'{% endif %}>{{contact.name}}</option>
+  {%endfor%}
+</select> 
+</div>
+
+ <div class="form-group col-md-3">
+ <label  class="label"> Status</label><br>
+ <select  name="status" required class="form-control" id="status">
+ <option >please select</option>
+{%for status in statuses %}
+  <option value="{{status}}"  {% if (status == sell.status  ) %}selected='selected'{% endif %}>{{status}}</option>
+  {%endfor%}
+</select> 
+</div>
+
+ <div class="form-group col-md-3">
+ <label  class="label"> Status payment</label><br>
+ <select name="status_payment" class="form-control" id="status_payment">
+{%for status_payment in status_payments %}
+  <option class="status_payment" value="{{status_payment}}" disabled {% if (status_payment == sell.statusPayment  ) %}selected='selected'{% endif %} >{{status_payment}}</option>
+  {%endfor%}
+</select> 
+</div>
+
+<div class="form-group col-md-3">
+ <label for="date_transaction">date transaction:</label>
+    <input type="text" class="js-datetimePicker"name="date_transaction" value="{{sell.dateTransaction|date('Y-m-d') }}" id="date_transaction" class="form-control" />
+</div>
+</div>
+
+
+
+    <input type="hidden" name="type" id="type" placeholder="type" value="sell" />
+  
+
+<br>
+
+
+<div class="row">
+		<div class=" d-flex  justify-content-center">
+			<div class="col-sm-5 ">
+				<div class="form-group">
+					<div class="input-group">
+					<span class="input-group-addon">
+						<i class="fa-solid fa-tablets  fa-2xl fa-fw"></i>
+					</span>
+            <input type="text" name="search_medicament" id="search_medicament" class="form-control" placeholder="medicament" />
+						
+                    <span class="input-group-addon">
+						<i class="fa-solid fa-tablets  fa-2xl fa-fw"></i>
+					</span>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="row col-sm-12 stpl_parcel_div" style="min-height: 0">
+				<input type="hidden" name="edit_dropshipping_lines" id="edit_dropshipping_lines" value="1">
+				<input type="hidden" id="product_row_index" value="0">
+				<input type="hidden" id="count" value="{{count}}">
+				<input type="hidden" id="total_amount" name="final_total" value="0">
+				<div class="table-responsive">
+					<table class="table table-condensed table-bordered table-striped table-responsive" id="stpl_table">
+						<thead>
+						<tr>
+							<th class="text-center" style="width: 200px;">product</th>
+							<th class="text-center" style="width: 200px;">qty</th>
+							<th class="text-center" style="width: 150px;">unit_price</th>
+							{# <th class="text-center" style="width: 150px;">caracteristique</th> #}
+							<th class="text-center" style="width: 200px;">total</th>
+							<th class="text-center"><i class="fas fa-times" aria-hidden="true"></i></th>
+						</tr>
+						</thead>
+						<tbody>
+                      {% set i = 0 %}
+                        {%for transaction_line in transaction_lines %}
+                       
+                            <tr class="product_row">
+                                <td class="text-center">
+                                    {{transaction_line.idMedicament.name}}
+                                    {# {{product['sku']}} #}
+                                </td>
+                                
+                                <input type="hidden" class="product_id" value="{{transaction_line.idMedicament.id}}" name="product[{{i}}][product_id]"/>
+
+                                <td class="text-center">
+                                                <div class="input-group input-number">
+                                                <b  style="width:70px;">carton:</b>
+                                                    {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-down"><i class="fa fa-minus text-danger"></i></button></span> #}
+                                                    <input type="number" data-min="0" value="{{transaction_line.qtyCarton}}" class="form-control input_number spl_qty_carton"  style="text-align: center;"
+                                                        name="product[{{i}}][qty_carton]" min="0" value="0"> 
+                                                    {# <input type="text" data-min="0" class="form-control input_number spl_qty_boite"  style="text-align: center;"
+                                                        name="product[{{row_index}}][qty_boite]" value="0">  <br>
+                                                    <input type="text" data-min="0" class="form-control input_number spl_qty_plaquette"  style="text-align: center;"
+                                                        name="product[{{row_index}}][qty_plaquette]" value="1">  <br> #}
+                                                    {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-up"><i class="fa fa-plus text-success"></i></button></span> #}
+                                                </div> 
+                                                        <div class="input-group input-number">
+                                                        <b style="width:70px;">boite:</b>
+                                                    {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-down"><i class="fa fa-minus text-danger"></i></button></span> #}
+                                                <input type="number" data-min="0" value="{{transaction_line.qtyBoite}}" class="form-control input_number spl_qty_boite"  style="text-align: center;"
+                                                        name="product[{{i}}][qty_boite]" min="0" value="0">
+                            
+                                                    {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-up"><i class="fa fa-plus text-success"></i></button></span> #}
+                                                </div> 
+                                                        <div class="input-group input-number">
+                                                        <b style="width:70px;">plq:</b>
+                                                    {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-down"><i class="fa fa-minus text-danger"></i></button></span> #}
+                                                    <input type="number" data-min="0" value="{{transaction_line.qtyPlaquette}}" class="form-control input_number spl_qty_plaquette"  style="text-align: center;"
+                                                        name="product[{{i}}][qty_plaquette]" min="0" value="1"> 
+                            
+                                                    {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-up"><i class="fa fa-plus text-success"></i></button></span> #}
+                                                </div>
+                                                
+                                                <input type="hidden" class="spl_available_qty_carton" >
+                                                <input type="hidden" class="spl_available_qty_boite" >
+                                                <input type="hidden" class="spl_available_qty_plaquette" >
+                                            </td>
+                                <td class="text-center">
+                                    <input type="text" readonly name="product[{{i}}][price_carton]" value="{{transaction_line.idMedicament.priceUnitCarton}}" class="form-control product_price_carton" style="text-align: center;" >
+                                    <input type="text" readonly name="product[{{i}}][price_boite]" value="{{transaction_line.idMedicament.priceUnitBoite}}" class="form-control product_price_boite" style="text-align: center;" >
+                                    <input type="text" readonly name="product[{{i}}][price_plaquette]" value="{{transaction_line.idMedicament.priceUnitPlaquette}}" class="form-control product_price_plaquette" style="text-align: center;">
+                                </td>
+                                {# <td class="text-center">
+                                
+                                        <input type="text" name="product[{{row_index}}][caracteristique]" class="form-control">
+                                    
+                                </td> #}
+                                <td class="text-center">
+                                    <input type="text" readonly name="product[{{i}}][product_price_total]" class="form-control product_price_total" style="text-align: right;" >
+                                </td>
+                                <td class="text-center"><i class="fa fa-times text-danger spl_remove_row cursor-pointer" aria-hidden="true"></i></td> 
+
+                            </tr>
+                            {% set i = i + 1 %}
+                        {% endfor %}
+						</tbody>
+						<tfoot>
+							
+						<tr class="text-center">
+							<td colspan="4"></td>
+							<td><div class="pull-right"><b>Total amount:</b> <span id="total_amount_transaction">0.00Ar</span></div>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+				</div>
+
+			</div>
+
+		
+		</div>
+
+		  <div class="form-group ">
+ <label for="note">Note:</label>
+    <textarea name="note" value="{{sell.note}}" id="note" class="form-control" /></textarea>
+</div>
+
+<br>
+<div  id="add_payment">
+<H2>
+Payment
+</H2>
+{# <div class="row"> #}
+ <div class="form-group col-md-4">
+  <label  class="label">Mode payment</label><br>
+ <select name="mode_payment" class="form-control" id="mode_payment">
+{%for mode_payment in mode_payments %}
+  <option value="{{mode_payment}}" {% if (mode_payment == 'cache'  ) %}selected='selected'{% endif %} {% if (mode_payment != 'cache'  ) %}disabled{% endif %} >{{mode_payment}}</option>
+  {%endfor%}
+</select> 
+</div>
+
+<div class="form-group col-md-4">
+ <label for="payment">payé:</label>
+
+    <input type="number" name="payment" value="{{sell.totalPaid}}" id="payment" class="form-control" />
+
+</div>
+
+
+
+{# </div> #}
+</div>
+
+
+
+
+
+{# 
+<div class="container-fluid">
+<div class="form-group">
+    <input type="date" name="date_transaction" value="{{sell.dateTransaction|date('Y-m-d') }}" class="form-control" id="date_transaction">
+</div>
+<br>
+<div class="form-group">
+    <input type="text" name="paid_on" value="{{sell.paidOn}}" id="paid_on" class="form-control" placeholder="paid_on" />
+</div>
+<br>
+
+    <input type="hidden" name="type" id="type" placeholder="type" value="sell" />
+    <div class="form-group">
+    <input type="text" name="total_amount" value="{{sell.totalAmount}}" id="total_amount" class="form-control" placeholder="total_amount" />
+ </div>
+ <br> 
+ <div class="form-group">
+ <select name="identity" class="form-control">
+{%for identities in identity%}
+
+  <option value="{{identities.id}}" {% if (identities.id == sell.veritableEntity.id  ) %}selected='selected'{% endif %}
+   >{{identities.name}}</option>
+  {%endfor%}
+</select> 
+ </div>
+<br>#}
+ {# <label class="form-check-label">products
+    <br>
+    {%for products in product%}
+    <div class="form-check">
+    <input type="checkbox" class="form-check-input" name="products[]" value="{{products.id}}" {% for med in sell.getMedicamentId %}
+        
+     {% if (products.id == med.id ) %}checked{% endif %} {% endfor %}>
+    <label  class="form-check-label"> {{products.name}}</label><br>
+    </div>
+  {%endfor%}
+  <br>
+
+</div> #}
+
+   <br>
+
+ <div class="d-flex  justify-content-end">
+   <button type="submit" id="submit_transaction_edit" class="btn btn-success pull-right">Update</button>
+   </div>
+    </form>  
+    </div> 
+    {# <script>
+    </script> #}
+    {% endblock %}

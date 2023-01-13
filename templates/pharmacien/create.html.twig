@@ -1,0 +1,67 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}create sell{% endblock %}
+
+{% block body %}
+    {# <form   method="POST" action="{{path('app_sell_create')}}"> 
+    <input type="text" name="paid_on" id="paid_on" placeholder="paid_on" />
+
+    <div class="col-xs-6">
+    {{form_widget(form.veritableEntity, {'attr': {'class': 'form-control'}})}}
+    </div>
+    <button type="submit" class="btn btn-success">to_do</button>
+     </form>   #}
+
+ {{ form_start(form) }}
+ {# <div class="form-check">
+ <div class="col-md-6">  #}
+{# <form action="{{ path('app_client_create') }}" method="post" > #}
+  {# {{ form_widget(form) }} #}
+  {# {{ form_label(form.contact) }}
+   {{form_widget(form.contact, {'attr': {'class': 'form-control'}})}} #}
+    {# <div class="col-md-9"> #}
+   
+  <div class="form-group">
+   {# {{form_row(form.name, {'label': 'name'}, {'attr': {'class': 'form-control'}})}} #}
+    {{ form_label(form.name) }}:
+   {{form_widget(form.name, {'attr': {'class': 'form-control'}})}} 
+    </div>
+    <div class="form-group">
+       {{ form_label(form.First_name) }}:
+   {{form_widget(form.First_name, {'attr': {'class': 'form-control'}})}} 
+   {# {{form_row(form.First_name, {'label': 'First_name'}, {'attr': {'class': 'form-control'}})}} #}
+    </div>
+    <div class="form-group">
+       {{ form_label(form.contact) }}:
+   {{form_widget(form.contact, {'attr': {'class': 'form-control'}})}} 
+   {# {{form_row(form.contact, {'label': 'contact'}, {'attr': {'class': 'form-control'}})}} #}
+    </div>
+    <div class="form-group">
+       {{ form_label(form.address) }}:
+   {{form_widget(form.address, {'attr': {'class': 'form-control'}})}} 
+   {# {{form_row(form.address, {'label': 'address'}, {'attr': {'class': 'form-control'}})}} #}
+    </div>
+ {{form_widget(form.type,{'value' : 'pharmacien'})}} 
+    {# <input type="hidden" name="type" id="type" value="client" /> #}
+ {# {{form_widget(form.medicament_id)}}
+  </div>
+  </div>  #}
+  {# <button type="submit" class="btn btn-success">valider</button>
+</form> #}
+
+   <button type="submit" class="btn btn-success">valider</button>
+{{ form_end(form) }} 
+
+
+   
+
+{# <div class="md-form md-outline input-with-post-icon datepicker" id="customDays">
+  <input placeholder="Select date" type="text" id="Customization" class="form-control">
+  <label for="Customization">Try me...</label>
+  <i class="fas fa-calendar input-prefix" tabindex=0></i>
+</div> #}
+ 
+    {# <script>
+    </script> #}
+    {% endblock %}

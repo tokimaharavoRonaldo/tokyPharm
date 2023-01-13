@@ -1,0 +1,58 @@
+<tr class="product_row">
+    <td class="text-center">
+        {{product['name']}}
+        {# {{product['sku']}} #}
+    </td>
+    
+    <input type="hidden" class="product_id" value="{{product['medicament_id']}}" name="product[{{row_index}}][product_id]"/>
+
+     <td class="text-center">
+                    <div class="input-group input-number">
+                    <b style="width:70px;">carton:</b>
+                        {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-down"><i class="fa fa-minus text-danger"></i></button></span> #}
+                        <input type="number" data-min="0" class="form-control input_number spl_qty_carton"  style="text-align: center;"
+                               name="product[{{row_index}}][qty_carton]"  value="0"> 
+                        {# <input type="text" data-min="0" class="form-control input_number spl_qty_boite"  style="text-align: center;"
+                               name="product[{{row_index}}][qty_boite]"  onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" onkeypress="return isNumber(event);" value="0">  <br>
+                        <input type="text" data-min="0" class="form-control input_number spl_qty_plaquette"  style="text-align: center;"
+                               name="product[{{row_index}}][qty_plaquette]" value="1">  <br> #}
+                        {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-up"><i class="fa fa-plus text-success"></i></button></span> #}
+                    </div> 
+                     {# <b style="width:32px;">boite:</b> #}
+                              <div class="input-group input-number">
+                              <b style="width:70px;">boite:</b>
+                        {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-down"><i class="fa fa-minus text-danger"></i></button></span> #}
+                      <input  type="number" data-min="0" class="form-control input_number spl_qty_boite"  style="text-align: center;"
+                               name="product[{{row_index}}][qty_boite]"  value="0">
+  
+                        {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-up"><i class="fa fa-plus text-success"></i></button></span> #}
+                    </div> 
+                              <div class="input-group input-number">
+                              <b style="width:70px;">plq:</b>
+                        {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-down"><i class="fa fa-minus text-danger"></i></button></span> #}
+                        <input type="number" data-min="0" class="form-control input_number spl_qty_plaquette"  style="text-align: center;"
+                               name="product[{{row_index}}][qty_plaquette]" value="1"> 
+  
+                        {# <span class="input-group-btn"><button type="button" class="btn btn-default btn-flat sh-quantity-up"><i class="fa fa-plus text-success"></i></button></span> #}
+                    </div>
+                    
+                    <input type="hidden" class="spl_available_qty_carton" >
+                    <input type="hidden" class="spl_available_qty_boite" >
+                    <input type="hidden" class="spl_available_qty_plaquette" >
+                </td>
+    <td class="text-center">
+        <input type="text" readonly name="product[{{row_index}}][price_carton]" class="form-control product_price_carton" style="text-align: center;" value="{{product['price_carton']}}">
+        <input type="text" readonly name="product[{{row_index}}][price_boite]" class="form-control product_price_boite" style="text-align: center;" value="{{product['price_boite']}}">
+        <input type="text" readonly name="product[{{row_index}}][price_plaquette]" class="form-control product_price_plaquette" style="text-align: center;" value="{{product['price_plaquette']}}">
+    </td>
+    {# <td class="text-center">
+       
+            <input type="text" name="product[{{row_index}}][caracteristique]" class="form-control">
+          
+    </td> #}
+    <td class="text-center">
+        <input type="text" readonly name="product[{{row_index}}][product_price_total]" class="form-control product_price_total" style="text-align: right;" value="{{product['price_plaquette']}}">
+    </td>
+    <td class="text-center"><i class="fa fa-times text-danger spl_remove_row cursor-pointer" aria-hidden="true"></i></td> 
+
+</tr>

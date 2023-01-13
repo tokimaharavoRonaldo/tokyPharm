@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client{% endblock %}
+
+{% block body %}
+<style>
+ {# body {
+     background-color:red;
+ } #}
+    {# .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; } #}
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+ 
+</style>
+
+<div class="example-wrapper">
+<div class="container-fluid">
+<div class="d-flex">
+<div class="col-sm-3">
+    <h1>clients</h1>
+    </div>
+<div class="col-sm-9 justify-content-end"> 
+       <a href="{{path('app_client_create')}}"  class="add_client btn btn-primary float-end" >Add</a>
+      
+      
+      </div>
+    </div>
+</div>
+<div class="col-sm-12 "> 
+        <input class="form-control float-end" id='search_client' value="{{term}}" type="search" placeholder="Search" aria-label="Search" style="width:150px;">
+      
+      
+      </div>
+
+<div class="table"> 
+<table class="table table-bordered">
+<thead>
+<tr>
+
+<th>Name</th>
+
+<th>Mobile</th>
+<th >Address</th>
+
+</tr>
+</thead>
+{% if client|length > 0 %}
+ {%for clients in client %}
+ 
+<tbody>
+
+<tr>
+<td>{{ clients.name}}</td>
+
+<td>{{clients.contact }}</td>
+<td>{{clients.address }}</td>
+
+<td style="width:30px;">
+<div class="btn-group" role="group">
+<button type="button" id="btnGroupDrop1"  class="btn btn-primary dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown">Action <span class="caret"></span></button>
+<div class="dropdown-menu" >
+{# <li><button type="button" href="" data-bs-toggle="modal" data-href="{{path('app_client_show', {id: clients.id})}}"  data-bs-target="#create_modal"  class="dropdown-item my_modal" >view</button></li> #}
+<a href="{{path('app_client_edit', {id:clients.id})}}"  class="dropdown-item" ><i class="fas fa-edit" aria-hidden="true"></i>edit</a>
+
+<a href="{{path('app_client_delete', {id: clients.id})}}"  class="dropdown-item"><i class="fas fa-trash" aria-hidden="true"></i>delete</a>
+</div>
+</div>
+
+</td>
+</tr>
+</tbody>
+
+ {%endfor%}
+ {% else %}
+<tbody>
+<tr>
+<td colspan="4">
+ <H4 class="text-center">vide</H4>
+ </td>
+ </tr>
+ </tbody>
+ {% endif %}
+</table>
+</div>
+</div>
+ <div class="modal fade modal" id="create_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+         
+       </div>  
+       </div>
+{% endblock %}

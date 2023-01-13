@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+     
+        <title>{% block title %}{% endblock %}</title>
+
+   {{ encore_entry_link_tags('app') }}
+   
+        {% block stylesheets %}
+
+             
+         
+            
+        {% endblock %}
+       
+
+    </head>
+    <body>
+  
+ 
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid d-flex ">
+  <img width="46" height="50" src="{{ asset('images/logo_pharm.png') }}" alt="pharmacy"/>
+    <a class="navbar-brand" href="#">TOKYPHARM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="nav navbar-nav ">
+        <li style="margin-right:10px;" class="nav-item">
+          {# <a class="nav-link active" aria-current="page" href="#">Date</a> #}
+          {{ 'now'|date('d-m-Y') }}
+        </li>
+        <li class="nav-item">
+           <a href="{{ path('app_login') }}">Login</a>
+        </li>
+        {# <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li> #}
+      </ul>
+      {# <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> #}
+    </div>
+  </div>
+</nav>
+{# 
+<div class="sidebar">
+{% if is_granted('ROLE_ADMIN') %}
+  <a class="active" href="{{path('app_home')}}"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+    <a href="{{path('app_medicament')}}"  class=""><i class="fa-solid fa-tablets" aria-hidden="true"></i>Medicament</a>
+    {% endif %}
+    <a href="{{path('app_client')}}"  class=""><i class="fa fas fa-address-book" aria-hidden="true"></i>Client</a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{path('app_fournisseur')}}"  class=""><i class="fa fa-industry" aria-hidden="true"></i>Fournisseur</a>
+   <a href="#about"><i class="fa-solid fa-user-nurse" aria-hidden="true"></i>Pharmacologue</a>
+     {% endif %}
+    <a href="{{path('app_sell')}}"  class=""><i class="fa fas fa-arrow-circle-up" aria-hidden="true"></i>Sell</a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{path('app_purchasse')}}"  class=""><i class="fa fas fa-arrow-circle-down" aria-hidden="true"></i>Purchasse</a>
+    {% endif %}
+</div> #}
+<div class="container-fluid" style="padding-left:32%;">
+
+    {% block body %}
+
+
+
+{% endblock %}
+    </div>
+    {{ encore_entry_script_tags('app') }}
+    {# {{ encore_entry_script_tags('datepicker') }} #}
+             {% block javascripts %}
+             
+            {# <script src="../../ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="../../maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> #}
+        {% endblock %}
+        {# <a href="#" class="btn btn-primary">link</a> #}
+        
+<footer class="footer">
+  <img width="36" height="40" src="{{ asset('images/logo_pharm.png') }}" alt="pharmacy"/>
+</footer>
+
+    </body>
+</html>

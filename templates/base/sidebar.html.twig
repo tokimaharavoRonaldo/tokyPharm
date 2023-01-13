@@ -1,0 +1,16 @@
+
+<div class="sidebar">
+{% if is_granted('ROLE_ADMIN') %}
+  <a class="active" href="{{path('app_home')}}"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+    <a href="{{path('app_medicament')}}"  class=""><i class="fa-solid fa-tablets" aria-hidden="true"></i>Medicament</a>
+    {% endif %}
+    <a href="{{path('app_client')}}"  class=""><i class="fa fas fa-address-book" aria-hidden="true"></i>Client</a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{path('app_fournisseur')}}"  class=""><i class="fa fa-industry" aria-hidden="true"></i>Fournisseur</a>
+   {# <a href="#about"><i class="fa-solid fa-user-nurse" aria-hidden="true"></i>Pharmacologue</a> #}
+     {% endif %}
+    <a href="{{path('app_sell')}}"  class=""><i class="fa fas fa-arrow-circle-up" aria-hidden="true"></i>Sell</a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{path('app_purchasse')}}"  class=""><i class="fa fas fa-arrow-circle-down" aria-hidden="true"></i>Purchasse</a>
+    {% endif %}
+</div>

@@ -1,0 +1,85 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Add medicament{% endblock %}
+
+{% block body %}
+  <div class="col-md-12">
+<H1>
+Add medicament
+</H1>
+
+
+ <form  class="form-control form_medicament" method="POST" action="{{path('app_medicament_store')}}"> 
+<div class="container">
+<div class="row">
+<div class="form-group col-md-3">
+ <label for="name">Name:</label>
+    <input type="text" name="name" class="form-control" id="name" required placeholder="name">
+</div>
+<div class="form-group col-md-6">
+ <label for="cible">cible:</label>
+    <textarea name="cible" id="cible" class="form-control" required placeholder="cible" ></textarea>
+</div>
+<div class="form-group col-md-3">
+ <label for="date_peremp">date peremption:</label>
+    <input type="text" class="js-datetimePicker" name="date_peremp" required value="{{date}}" id="date_peremp" class="form-control" />
+</div>
+</div>
+<div class="row">
+
+<div class="form-group col-md-6">
+ <label for="mode_conso">mode consommation:</label>
+    <textarea name="mode_conso" id="mode_conso" class="form-control" required placeholder="mode de consommation" ></textarea>
+</div>
+<div class="form-group col-md-6">
+ <label for="effet_secondaire">effet secondaire:</label>
+    <textarea name="effet_secondaire" id="effet_secondaire" class="form-control" placeholder="effet secondaire" ></textarea>
+</div>
+</div>
+<div class="form-group">
+ <label for="note">Note:</label>
+    <textarea name="note" id="note" class="form-control" placeholder="note" ></textarea>
+</div>
+<hr>
+<H2>Stock</h2>
+<div class="row">
+<div class="form-group col-md-4">
+ <label for="carton">Carton:</label>
+    <input type="number" name="carton" class="form-control"  id="carton">
+</div>
+<div class="form-group col-md-4">
+ <label for="boite">Boite:</label>
+    <input type="number" name="boite" class="form-control" id="boite">
+</div>
+<div class="form-group col-md-4">
+ <label for="plaquette">Plaquette:</label>
+    <input type="number" name="plaquette" class="form-control" id="plaquette">
+</div>
+</div>
+
+<hr>
+<H2>Price</h2>
+<div class="row">
+<div class="form-group col-md-4">
+ <label for="price_unit_carton">Prix par carton:</label>
+    <input type="number" name="price_unit_carton" class="form-control" required id="price_unit_carton">
+</div>
+<div class="form-group col-md-4">
+ <label for="price_unit_boite">Prix par boite:</label>
+    <input type="number" name="price_unit_boite" class="form-control" required id="price_unit_boite">
+</div>
+<div class="form-group col-md-4">
+ <label for="price_unit_plaquette">Prix par plaquette:</label>
+    <input type="number" name="price_unit_plaquette" class="form-control" required id="price_unit_plaquette">
+</div>
+</div>
+<br>
+
+ <div class="d-flex  justify-content-end">
+   <button type="submit" class="btn btn-success pull-right">Add</button>
+   </div>
+</div>
+    </form>   
+
+    {% endblock %}

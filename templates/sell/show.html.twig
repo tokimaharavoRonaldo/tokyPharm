@@ -1,0 +1,137 @@
+{#<div class="modal fade" id="show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">#}
+        <div class="modal-content">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">sell</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+            </div>
+            <div class="modal-body">
+ 
+
+<div class="row">
+<div class="col-md-4">
+<b>facture No:</b>
+{{sell.numFacture ?? sell.id}}
+<br>
+<b>Client:</b><br>
+{{sell.idContact.name}}
+<br>
+{{sell.idContact.contact}}
+</div>
+<div class="col-md-4">
+</div>
+<div class="col-md-4">
+<b>Date:</b>
+{{sell.dateTransaction |date('d-m-Y')  }}
+<br>
+<b>Status:</b>
+{{sell.status  }}
+<br>
+<b>Status payment:</b>
+{{sell.statusPayment  }}
+<br>
+<b>Mode payment:</b>
+{{sell.modePayment  }}
+</div>
+</div>
+   <br>
+<div class="table-responsive"> 
+<table class="table table-bordered">
+<thead>
+<tr>
+{# <th>#</th> #}
+<th class="text-center">Medicament</th>
+<th class="text-center">Price carton</th>
+<th class="text-center">Price boite</th>
+<th class="text-center">price plaquette</th>
+<th class="text-center">Qty carton</th>
+<th class="text-center">Qty boite</th>
+<th class="text-center">Qty plaquette</th>
+
+<th class="text-center">price</th>
+</tr>
+</thead>
+ 
+ {# {{dd(sell)}} #}
+<tbody>
+{%for med in sell.transactionLines %}
+<tr>
+{# <td>{{sell.id}}</td> #}
+
+<td class="text-center">{{med.idMedicament.name ?? "pas de nom" }}</td>
+<td class="text-center">{{med.idMedicament.priceUnitCarton  }} Ar</td>
+<td class="text-center">{{med.idMedicament.priceUnitBoite  }} Ar</td>
+<td class="text-center">{{med.idMedicament.priceUnitPlaquette  }} Ar</td>
+<td class="text-center">{{med.qtyCarton  }}</td>
+<td class="text-center">{{med.qtyBoite }}</td>
+<td class="text-center">{{med.qtyPlaquette  }}</td>
+<td class="text-center">{{med.price  }} Ar</td>
+
+
+</tbody>
+
+</tr>
+ {%endfor%}
+</table>
+</div>
+<br>
+<div class="payment">
+PAYMENT
+
+
+
+ <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="table-responsive">
+          <table class="table bg-gray">
+            <tr>
+              <th>Total: </th>
+              <td></td>
+              <td><span class="display_currency pull-right" data-currency_symbol="true">{{ sell.priceTotal }} Ar</span></td>
+            </tr>
+            <tr>
+              <th>Total paid:</th>
+              <td><b>(-)</b></td>
+              <td><div class="pull-right"><span class="display_currency">{{ sell.totalPaid }} Ar</span> </span></div></td>
+            </tr>
+           
+            {# <tr>
+              <th>{{ __('sale.order_tax') }}:</th>
+              <td><b>(+)</b></td>
+              <td class="text-right">
+      
+                    <strong><small>{{$k}}</small></strong> - <span class="display_currency pull-right" data-currency_symbol="true">{{ $v }}</span><br>
+                 
+              </td>
+            </tr> #}
+          
+            <tr>
+              <th>due:</th>
+              <td></td>
+              <td>
+                <!-- Converting total paid to string for floating point substraction issue -->
+                   {%if  sell.totalPaid >= sell.priceTotal %}
+                <span class="display_currency pull-right" data-currency_symbol="true" >{{ 0 }} Ar</span></td>
+      {%else %}     
+                <span class="display_currency pull-right" data-currency_symbol="true" >{{ sell.priceTotal - sell.totalPaid }} Ar</span></td>
+      {%endif %} 
+            </tr>
+          </table>
+        </div>
+      </div>
+</div>
+
+ </div>
+   <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+ </div>
+ </div>
+        </div><!-- /.modal-content -->
+ {#   </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+#}

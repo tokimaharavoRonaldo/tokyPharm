@@ -1,0 +1,80 @@
+<div class="modal-content">
+       
+            <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Medicament</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+            </div>
+            <div class="modal-body">
+
+            <div class="row">
+<div class="col-md-4">
+<b>Name:</b>
+{{medicament.name}}
+<br>
+<b>Cible:</b><br>
+{% if medicament.cible is not empty %}
+   {{medicament.cible}}
+<br>     
+{% endif %}
+
+<b>Mode d'emploi:</b><br>
+{% if medicament.modeConso is not empty %}
+{{medicament.modeConso}}
+<br>
+{% endif %}
+<b>Effet secondaire:</b><br>
+{% if medicament.effetSecondaire is not empty %}
+{{medicament.effetSecondaire}}
+<br>
+{% endif %}
+<b>Date peremption:</b>
+{% if medicament.datePeremp is not empty %}
+<br>
+{{medicament.datePeremp|date('d-m-Y') }}
+{% endif %}
+{# <b>Mode d'emploi:</b><br>
+{{medicament.effet_secondaire}} #}
+</div>
+
+
+<div class="col-md-4">
+<b>Prix par carton:</b>
+{{medicament.priceUnitCarton}}
+<br>
+<b>Prix par boite:</b>
+{{medicament.priceUnitBoite}}
+<br>
+<b>Prix par plaquette:</b>
+{{medicament.priceUnitPlaquette}}
+
+</div>
+
+
+<div class="col-md-4">
+<b>Stock en carton:</b>
+{{medicament.theStock.carton}}
+<br>
+<b>Stock en boite:</b>
+{{medicament.theStock.boite}}
+<br>
+<b>Stock en plaquette:</b>
+{{medicament.theStock.plaquette}}
+
+</div>
+</div>
+<br>
+
+<div class="note">
+<b>Note:</b><br>
+{{medicament.note}}
+</div>
+<br>
+ <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+ </div>
+</div>
+
+

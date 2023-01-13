@@ -1,0 +1,86 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit medicament{% endblock %}
+
+{% block body %}
+ <div class="col-md-12">
+<H1>
+Edit medicament
+</H1>
+
+
+ <form  class="form-control" method="POST" action="{{path('app_medicament_update', {'id': medicament.id} )}}"> 
+<div class="container">
+<div class="row">
+<div class="form-group col-md-3">
+ <label for="name">Name:</label>
+    <input type="text" name="name" class="form-control" id="name" value="{{medicament.name}}" placeholder="name">
+</div>
+<div class="form-group col-md-6">
+ <label for="cible">cible:</label>
+    <textarea name="cible" id="cible" class="form-control"  placeholder="cible" >{{medicament.cible}}</textarea>
+</div>
+<div class="form-group col-md-3">
+ <label for="date_peremp">date peremption:</label>
+    <input type="text" class="js-datetimePicker" name="date_peremp" id="date_peremp" value="{{medicament.datePeremp|date('Y-m-d') }}"  class="form-control" />
+</div>
+</div>
+<div class="row">
+
+<div class="form-group col-md-6">
+ <label for="mode_conso">mode consommation:</label>
+    <textarea name="mode_conso" id="mode_conso" class="form-control" placeholder="mode de consommation" >{{medicament.modeConso}}</textarea>
+</div>
+<div class="form-group col-md-6">
+ <label for="effet_secondaire">effet secondaire:</label>
+    <textarea name="effet_secondaire" id="effet_secondaire" class="form-control"  placeholder="effet secondaire" >{{medicament.effetSecondaire}}</textarea>
+</div>
+</div>
+<div class="form-group">
+ <label for="note">Note:</label>
+    <textarea name="note" id="note" class="form-control"  placeholder="note" >{{medicament.note}}</textarea>
+</div>
+<hr>
+<H2>Stock</h2>
+<div class="row">
+<div class="form-group col-md-4">
+ <label for="carton">Carton:</label>
+    <input type="number" name="carton" class="form-control" id="carton" value="{{medicament.theStock.carton}}">
+</div>
+<div class="form-group col-md-4">
+ <label for="boite">Boite:</label>
+    <input type="number" name="boite" class="form-control" id="boite" value="{{medicament.theStock.boite}}">
+</div>
+<div class="form-group col-md-4">
+ <label for="plaquette">Plaquette:</label>
+    <input type="number" name="plaquette" class="form-control" id="plaquette" value="{{medicament.theStock.plaquette}}">
+</div>
+</div>
+
+<hr>
+<H2>Price</h2>
+<div class="row">
+<div class="form-group col-md-4">
+ <label for="price_unit_carton">Prix par carton:</label>
+    <input type="number" name="price_unit_carton" class="form-control" id="price_unit_carton" value="{{medicament.priceUnitCarton}}">
+</div>
+<div class="form-group col-md-4">
+ <label for="price_unit_boite">Prix par boite:</label>
+    <input type="number" name="price_unit_boite" class="form-control" id="price_unit_boite" value="{{medicament.priceUnitBoite}}">
+</div>
+<div class="form-group col-md-4">
+ <label for="price_unit_plaquette">Prix par plaquette:</label>
+    <input type="number" name="price_unit_plaquette" class="form-control" id="price_unit_plaquette" value="{{medicament.priceUnitPlaquette}}">
+</div>
+</div>
+<br>
+
+ <div class="d-flex  justify-content-end">
+   <button type="submit" class="btn btn-success pull-right">Update</button>
+   </div>
+</div>
+    </form>   
+
+</div>
+    {% endblock %}

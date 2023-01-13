@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}medicament{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="example-wrapper">
+
+<div class="d-flex">
+<div class="col-sm-6">
+    <h1>All medicaments</h1>
+    </div>
+<div class="col-sm-6 "> 
+        
+      <a href="{{path('app_medicament_create')}}"  class="btn btn-primary float-end"><i class="fa fa-plus" aria-hidden="true"></i>Add</a>
+      
+      </div>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<input class="form-control float-end" id="search_med" type="search" value="{{term}}" placeholder="Search" aria-label="Search" style="width:150px;">
+
+</div>
+</div>
+
+<div class="table-responsive"> 
+<table class="table table-bordered">
+<thead>
+<tr>
+
+<th>name</th>
+<th>cible</th>
+<th>mode emploi</th>
+<th>effet secondaire</th>
+<th>date de peremption</th>
+
+<th>note</th>
+
+</tr>
+</thead>
+{% if medicament|length > 0 %}
+{%for medicaments in medicament %}
+ {# {{dd(sell)}} #}
+<tbody>
+<tr>
+<td>{{medicaments.name}}</td>
+<td>{{medicaments.cible }}</td>
+<td>{{medicaments.modeConso }}</td>
+<td>{{medicaments.effetSecondaire }}</td>
+<td>{{medicaments.datePeremp|date('d-m-Y')  }}</td>
+
+<td>{{medicaments.note }}</td>
+
+<td>
+<div class="btn-group" role="group">
+<button type="button" id="btnGroupDrop1"  class="btn btn-primary dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown">Action <span class="caret"></span></button>
+<div class="dropdown-menu" >
+<button type="button" href="" data-bs-toggle="modal" data-href="{{path('app_medicament_show', {id: medicaments.id})}}"  data-bs-target="#create_modal"  class="dropdown-item my_modal" ><i class="fas fa-eye" aria-hidden="true"></i> view</button>
+
+<a href="{{path('app_medicament_edit', {id: medicaments.id})}}"  class="dropdown-item" ><i class="fas fa-edit" aria-hidden="true"></i>edit</a>
+
+<a href="{{path('app_medicament_delete', {id: medicaments.id})}}"  class="dropdown-item"><i class="fas fa-trash" aria-hidden="true"></i>delete</a>
+</div>
+</div>
+</td>
+
+
+</tr>
+</tbody>
+ {% endfor %}
+
+{% else %}
+<tbody>
+<tr>
+<td colspan="6">
+ <H4 class="text-center">vide</H4>
+ </td>
+ </tr>
+ </tbody>
+ {% endif %}
+
+</table>
+</div>
+{# </div> #}
+   <div class="modal fade modal" id="create_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+         
+       </div>  
+       </div>
+{% endblock %}

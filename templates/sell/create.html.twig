@@ -1,0 +1,169 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}create sell{% endblock %}
+
+{% block body %}
+   <div class="col-md-12">
+
+<H1>
+Add sell
+</H1>
+{# <div class="md-form md-outline input-with-post-icon datepicker" id="customDays">
+  <input placeholder="Select date" type="text" id="Customization" class="form-control">
+  <label for="Customization">Try me...</label>
+  <i class="fas fa-calendar input-prefix" tabindex=0></i>
+</div> #}
+ <form  class="form-control" id="transaction_create" method="POST" action="{{path('app_sell_store')}}"> 
+{# <div class="container-fluid"> #}
+<div class="row">
+ <div class="form-group col-md-3">
+  <label  class="label"> Client</label><br>
+ <select name="contact"  class="form-control" required>
+  <option value="">please select</option>
+{%for contact in contacts %}
+  <option value="{{contact.id}}" >{{contact.name}}</option>
+  {%endfor%}
+</select> 
+</div>
+
+ <div class="form-group col-md-3">
+ <label  class="label"> Status</label><br>
+ <select  name="status" class="form-control" id="status">
+ <option value="">please select</option>
+{%for status in statuses %}
+  <option value="{{status}}"  >{{status}}</option>
+  {%endfor%}
+</select> 
+</div>
+
+ <div class="form-group col-md-3">
+ <label  class="label"> Status payment</label><br>
+ <select name="status_payment" class="form-control" id="status_payment">
+{%for status_payment in status_payments %}
+  <option class="status_payment" value="{{status_payment}}" disabled {% if (status_payment == 'due'  ) %}selected='selected'{% endif %} >{{status_payment}}</option>
+  {%endfor%}
+</select> 
+</div>
+{# <div class="form-group">
+    <input type="date" name="date_transaction" class="form-control" id="date_transaction">
+</div> #}
+<div class=" col-md-3">
+<div class="form-group">
+	<label for="date_transaction">date transaction:</label>				
+						<div class="input-group">
+							<span class="input-group-addon">
+								<i class="fa fa-calendar fa-2xl fa-fw"></i>
+							</span>
+							 <input type="text" class="js-datetimePicker form-control" name="date_transaction" value="{{date}}" id="date_transaction"  required />
+						</div>
+
+</div>
+</div>
+</div>
+
+
+    <input type="hidden" name="type" id="type" placeholder="type" value="sell" />
+    {# <div class="form-group">
+    <input type="text" name="total_amount" id="total_amount" class="form-control" placeholder="total_amount" />
+ </div> #}
+
+<br>
+
+
+<div class="row">
+		<div class=" d-flex  justify-content-center">
+			<div class="col-sm-5 ">
+				<div class="form-group">
+					<div class="input-group">
+					<span class="input-group-addon">
+						<i class="fa-solid fa-tablets  fa-2xl fa-fw"></i>
+					</span>
+            <input type="text" name="search_medicament" id="search_medicament" class="form-control" placeholder="medicament" />
+						<span class="input-group-addon">
+						<i class="fa-solid fa-tablets  fa-2xl fa-fw"></i>
+					</span>
+
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="row col-sm-12 stpl_parcel_div" style="min-height: 0">
+				<input type="hidden" name="edit_dropshipping_lines" id="edit_dropshipping_lines" value="0">
+				<input type="hidden" id="product_row_index" value="0">
+				<input type="hidden" id="count" value="0">
+				<input type="hidden" id="total_amount" name="final_total" value="0">
+				<div class="table-responsive">
+					<table class="table table-condensed table-bordered table-striped table-responsive" id="stpl_table">
+						<thead>
+						<tr>
+							<th class="text-center" style="width: 200px;">product</th>
+							<th class="text-center" style="width: 200px;">qty</th>
+							<th class="text-center" style="width: 150px;">unit_price</th>
+							{# <th class="text-center" style="width: 150px;">caracteristique</th> #}
+							<th class="text-center" style="width: 180px;">total</th>
+							<th class="text-center"><i class="fas fa-times" aria-hidden="true"></i></th>
+						</tr>
+						</thead>
+						<tbody>
+						</tbody>
+						<tfoot>
+							
+						<tr class="text-center">
+							<td colspan="4"></td>
+							<td><div class="pull-right"><b>Total amount:</b> <span id="total_amount_transaction">0.00Ar</span></div>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+				</div>
+
+			</div>
+
+		
+		</div>
+
+		  <div class="form-group ">
+ <label for="note">Note:</label>
+    <textarea name="note" id="note" class="form-control" /></textarea>
+</div>
+
+<br>
+<div  id="add_payment">
+<H2>
+Payment
+</H2>
+{# <div class="row"> #}
+ <div class="form-group col-md-4">
+  <label  class="label">Mode payment</label><br>
+ <select name="mode_payment" class="form-control" id="mode_payment">
+{%for mode_payment in mode_payments %}
+  <option value="{{mode_payment}}" {% if (mode_payment == 'cache'  ) %}selected='selected'{% endif %} {% if (mode_payment != 'cache'  ) %}disabled{% endif %} >{{mode_payment}}</option>
+  {%endfor%}
+</select> 
+</div>
+
+<div class="form-group col-md-4">
+ <label for="payment">payé:</label>
+
+    <input type="number" name="payment" value="0.00" id="payment" class="form-control" required />
+
+</div>
+
+
+
+{# </div> #}
+</div>
+
+</div>
+
+  <br>
+
+ <div class="d-flex  justify-content-end">
+   <button type="submit" id="submit_transaction" class="btn btn-success pull-right">Add</button>
+   </div>
+{# </div> #}
+{# </div> #}
+    </form>   
+</div>
+    {% endblock %}

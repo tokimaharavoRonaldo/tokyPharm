@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Contact;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
+class ContactType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+        ->add('name')
+        ->add('surname')
+        ->add('contact', TextType::class, [
+            // 'label' => 'first_Name',
+            'required' => true,
+            'row_attr' => [
+                'class' => 'myclass'
+            ],
+        ])
+        ->add('address')    
+        ->add('type', HiddenType::class)
+        ->add('is_entreprise', HiddenType::class)
+        // ->add('is_entreprise', CheckboxType::class, array(
+        //     'required' => false,
+        //     'label'    => 'is_entreprise',
+        //     'value' => 0,
+        // ))
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Contact::class,
+        ]);
+    }
+}
+
